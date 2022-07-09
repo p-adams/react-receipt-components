@@ -1,6 +1,13 @@
 import { html, css, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import "./base-receipt";
+
+const RECEIPT_DATA: LineItem[] = [
+  { name: "Frozen shrimp", price: 24.5 },
+  { name: "Pizza", price: 44.77 },
+  { name: "Pasta", price: 2.99 },
+];
+
 @customElement("receipt-component")
 export class ReceiptComponent extends LitElement {
   static styles = css`
@@ -25,7 +32,7 @@ export class ReceiptComponent extends LitElement {
           <h2>Receipt Component</h2>
         </header>
         <main class="Main-content">
-          <base-receipt></base-receipt>
+          <base-receipt .data=${RECEIPT_DATA}></base-receipt>
         </main>
       </div>
     `;
