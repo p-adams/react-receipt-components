@@ -30,3 +30,9 @@ export class BaseReceipt extends LitElement {
     </article>`;
   }
 }
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "base-receipt": BaseReceipt;
+  }
+}
