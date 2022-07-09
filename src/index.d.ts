@@ -1,12 +1,11 @@
-type LineItem = {
-  name: string;
+type ReceiptLineItem = {
+  description: string;
   price: number;
-} & {
-  // support custom line item columns
-  [key: string]: any;
+  quantity?: number;
+  amount?: number;
 };
 
-type LineItems = LineItem[];
+type ReceiptLineItems = ReceiptLineItem[];
 
 type Column = {
   id: string;

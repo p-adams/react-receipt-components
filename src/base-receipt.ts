@@ -2,13 +2,13 @@ import { html, css, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 /* 
-Base receipt component that displays item, quantity<optional>, price line item, tax, sales tax<optional>, subtotal, and total
+Base receipt component that displays item, quantity<optional>, price line item, tax<optional>, subtotal, and total
 */
 
 @customElement("base-receipt")
 export class BaseReceipt extends LitElement {
   @property()
-  data: LineItems = [];
+  data: ReceiptLineItems = [];
 
   @property()
   heading: String = "Bedrock Supermarket";
@@ -23,7 +23,7 @@ export class BaseReceipt extends LitElement {
         <h3>${this.heading}</h3>
         <div>
           ${this.data.map((item) => {
-            return html`<div>${item.name}</div>`;
+            return html`<div>${item.description}</div>`;
           })}
         </div>
       </section>
