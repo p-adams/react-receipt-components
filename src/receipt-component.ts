@@ -2,10 +2,10 @@ import { html, css, LitElement } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import "./base-receipt";
 
-const RECEIPT_DATA: LineItem[] = [
-  { name: "Frozen shrimp", price: 24.5 },
-  { name: "Pizza", price: 44.77 },
-  { name: "Pasta", price: 2.99 },
+const RECEIPT_DATA: ReceiptLineItems = [
+  { description: "Frozen shrimp", price: 24.5 },
+  { description: "Pizza", price: 44.77 },
+  { description: "Pasta", price: 2.99 },
 ];
 
 @customElement("receipt-component")
