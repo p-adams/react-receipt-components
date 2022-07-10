@@ -7,23 +7,32 @@ Base receipt component that displays item, quantity<optional>, price line item, 
 
 @customElement("base-receipt")
 export class BaseReceipt extends LitElement {
+  static styles = css`
+    .Base-receipt {
+      outline: 1px solid gray;
+    }
+  `;
   @property()
   data: ReceiptLineItems = [];
 
   @property()
   heading: String = "Bedrock Supermarket";
 
+  static receiptLineItem(lineItem: ReceiptLineItem) {
+    return html`<div class="Receipt-line-item">${lineItem.description}</div>`;
+  }
+
   render() {
     if (!this.data?.length) {
       return html`<div>no data</div>`;
     }
 
-    return html`<article>
+    return html`<article class="Base-receipt">
       <section>
         <h3>${this.heading}</h3>
         <div>
           ${this.data.map((item) => {
-            return html`<div>${item.description}</div>`;
+            return BaseReceipt.receiptLineItem(item);
           })}
         </div>
       </section>

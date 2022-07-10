@@ -11,23 +11,14 @@ const RECEIPT_DATA: ReceiptLineItems = [
 @customElement("receipt-component")
 export class ReceiptComponent extends LitElement {
   static styles = css`
-    :host {
-      display: block;
-      border: solid 1px gray;
-      padding: 16px;
-      max-width: 800px;
+    .Receipt {
+      padding: 10px;
     }
   `;
 
-  /**
-   * The number of times the button has been clicked.
-   */
-  @property({ type: Number })
-  count = 0;
-
   render() {
     return html`
-      <div class="App">
+      <div class="Receipt">
         <header>
           <h2>Receipt Component</h2>
         </header>
