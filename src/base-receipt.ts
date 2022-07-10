@@ -22,6 +22,12 @@ export class BaseReceipt extends LitElement {
     return html`<div class="Receipt-line-item">${lineItem.description}</div>`;
   }
 
+  total() {
+    return this.data.reduce((count, item) => {
+      return count + item.price;
+    }, 0);
+  }
+
   render() {
     if (!this.data?.length) {
       return html`<div>no data</div>`;
@@ -35,6 +41,7 @@ export class BaseReceipt extends LitElement {
             return BaseReceipt.receiptLineItem(item);
           })}
         </div>
+        <div>${this.total()}</div>
       </section>
     </article>`;
   }
