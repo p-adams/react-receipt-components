@@ -1,4 +1,4 @@
-import { html, css, LitElement } from "lit";
+import { html, css, LitElement, TemplateResult } from "lit";
 import { customElement, property } from "lit/decorators.js";
 
 /* 
@@ -9,7 +9,15 @@ Base receipt component that displays item, quantity<optional>, price line item, 
 export class BaseReceipt extends LitElement {
   static styles = css`
     .Base-receipt {
+      width: 400px;
       outline: 1px solid gray;
+    }
+    .Receipt-line-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .Right-align {
+      text-align: right;
     }
   `;
   @property()
@@ -18,8 +26,18 @@ export class BaseReceipt extends LitElement {
   @property()
   heading: String = "Bedrock Supermarket";
 
+  static lineItemEl(t: TemplateResult): TemplateResult {
+    return html`<div class="Receipt-line-item">${t}</div>`;
+  }
+
   static receiptLineItem(lineItem: ReceiptLineItem) {
-    return html`<div class="Receipt-line-item">${lineItem.description}</div>`;
+    return this.lineItemEl(html`<div>${lineItem.description}</div>
+      <div class="Right-align">${lineItem.price}</div>`);
+  }
+
+  static totalLineItem(total: number) {
+    return this.lineItemEl(html` <div>Total</div>
+      <div class="Right-align">${total}</div>`);
   }
 
   total() {
@@ -36,12 +54,10 @@ export class BaseReceipt extends LitElement {
     return html`<article class="Base-receipt">
       <section>
         <h3>${this.heading}</h3>
-        <div>
-          ${this.data.map((item) => {
-            return BaseReceipt.receiptLineItem(item);
-          })}
-        </div>
-        <div>${this.total()}</div>
+        ${this.data.map((item) => {
+          return BaseReceipt.receiptLineItem(item);
+        })}
+        ${BaseReceipt.totalLineItem(this.total())}
       </section>
     </article>`;
   }
