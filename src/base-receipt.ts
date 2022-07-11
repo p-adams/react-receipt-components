@@ -27,7 +27,19 @@ export class BaseReceipt extends LitElement {
   heading: String = "Bedrock Supermarket";
 
   static lineItemEl(t: TemplateResult): TemplateResult {
-    return html`<div class="Receipt-line-item">${t}</div>`;
+    function _edit() {
+      console.log("edit");
+    }
+    function _save() {
+      console.log("save");
+    }
+    return html`<div
+      class="Receipt-line-item"
+      @dblclick="${() => _edit()}"
+      @click="${() => _save()}"
+    >
+      ${t}
+    </div>`;
   }
 
   static receiptLineItem(lineItem: ReceiptLineItem) {
