@@ -12,12 +12,22 @@ export class BaseReceipt extends LitElement {
       width: 400px;
       outline: 1px solid gray;
     }
+    .Wrapper {
+      padding: 4px;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
     .Receipt-line-item {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      line-height: 2em;
     }
     .Right-align {
       text-align: right;
+    }
+    .Divider {
+      border: 1px dashed gray;
+      margin: 18px 0 10px;
     }
   `;
   @property()
@@ -26,7 +36,7 @@ export class BaseReceipt extends LitElement {
   @property()
   heading: String = "Bedrock Supermarket";
 
-  static lineItemEl(t: TemplateResult): TemplateResult {
+  private static lineItemEl(t: TemplateResult): TemplateResult {
     function _edit() {
       console.log("edit");
     }
@@ -64,11 +74,12 @@ export class BaseReceipt extends LitElement {
     }
 
     return html`<article class="Base-receipt">
-      <section>
+      <section class="Wrapper">
         <h3>${this.heading}</h3>
         ${this.data.map((item) => {
           return BaseReceipt.receiptLineItem(item);
         })}
+        <div class="Divider"></div>
         ${BaseReceipt.totalLineItem(this.total())}
       </section>
     </article>`;
