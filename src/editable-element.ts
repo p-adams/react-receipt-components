@@ -14,6 +14,9 @@ export class EditableReceipt extends LitElement {
   @property()
   unsavedChanges: Boolean = false;
 
+  @property()
+  template!: TemplateResult;
+
   private edit(target: any) {
     // TODO: add ability to edit any target passed in
     this.unsavedChanges = !this.unsavedChanges;
@@ -27,6 +30,9 @@ export class EditableReceipt extends LitElement {
     this.unsavedChanges = false;
   }
   render() {
-    return html``;
+    return html`<span
+      class=${`"Editable-element" ${this.unsavedChanges ? "Edit-mode" : ""}`}
+      >${this.template}</span
+    >`;
   }
 }
