@@ -14,3 +14,9 @@ type Column = {
 };
 
 type Columns = Column[];
+
+interface BaseReceiptData {
+  heading: string;
+  lineItems: ReceiptLineItems;
+  tax?: number;
+}

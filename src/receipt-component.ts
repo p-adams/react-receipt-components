@@ -1,12 +1,15 @@
 import { html, css, LitElement } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { customElement } from "lit/decorators.js";
 import "./base-receipt";
 
-const RECEIPT_DATA: ReceiptLineItems = [
-  { description: "Frozen shrimp", price: 24.5 },
-  { description: "Pizza", price: 44.77 },
-  { description: "Pasta", price: 2.99 },
-];
+const RECEIPT_DATA: BaseReceiptData = {
+  heading: "Bedrock Supermarket",
+  lineItems: [
+    { description: "Frozen shrimp", price: 24.5 },
+    { description: "Pizza", price: 44.77 },
+    { description: "Pasta", price: 2.99 },
+  ],
+};
 
 @customElement("receipt-component")
 export class ReceiptComponent extends LitElement {

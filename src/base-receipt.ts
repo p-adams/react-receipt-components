@@ -31,7 +31,7 @@ export class BaseReceipt extends LitElement {
     }
   `;
   @property()
-  data: ReceiptLineItems = [];
+  data: BaseReceiptData | null = null;
 
   @property()
   heading: String = "Bedrock Supermarket";
@@ -45,26 +45,26 @@ export class BaseReceipt extends LitElement {
       <div class="Right-align">${lineItem.price}</div>`);
   }
 
-  totalLineItem(total: number) {
+  totalLineItem(total: number | undefined) {
     return this.lineItemEl(html` <div>Total</div>
       <div class="Right-align">${total}</div>`);
   }
 
   total() {
-    return this.data.reduce((count, item) => {
+    return this.data?.lineItems?.reduce((count, item) => {
       return count + item.price;
     }, 0);
   }
 
   render() {
-    if (!this.data?.length) {
+    if (!this.data?.lineItems?.length) {
       return html`<div>no data</div>`;
     }
 
     return html`<article class="Base-receipt">
       <section class="Wrapper">
-        <h3>${this.heading}</h3>
-        ${this.data.map((item) => {
+        <h3>${this.data?.heading}</h3>
+        ${this.data?.lineItems?.map((item) => {
           return this.receiptLineItem(item);
         })}
         <div class="Divider"></div>
